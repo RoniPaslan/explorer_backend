@@ -1,70 +1,78 @@
 # explorer_backend
 
-To install dependencies:
+Backend menggunakan **Bun + Prisma + TypeScript + Elysia**, ringan dan
+siap dipakai untuk API berbasis MySQL.
 
-Explorer Backend – Bun + Prisma + TypeScript + Elysia
+## 🚀 Tech Stack
 
-Backend ringan menggunakan Bun, Prisma ORM, TypeScript, dan ElysiaJS.
-Repository ini sudah siap digunakan untuk menjalankan API dengan MySQL.
+-   Bun (runtime super cepat)
+-   TypeScript
+-   Prisma ORM v6.19
+-   MySQL
+-   ElysiaJS (web server minimalis)
+-   dotenv
 
-🚀 Tech Stack
+## 📦 Instalasi Dependency
 
-Bun (runtime super cepat)
-TypeScript
-Prisma ORM v6.19
-MySQL
-ElysiaJS (server router minimalis)
-dotenv
+Cek versi Bun:
 
-📦 Instalasi Dependency:
-bun --version
-bun install
+    bun --version
 
-Gunakan wsl:
-wsl -d Ubuntu -u root
+Install dependency:
 
-buat password linux nya contoh nama linux "rp-linux"
+    bun install
 
-ketik: passwd rp-linux
-nanti muncul
-New password: [isi password anda]
+Jika menggunakan WSL:
 
-Struktur:
-explorer_backend/
-├── prisma/
-│   ├── schema.prisma
-│   └── prisma.config.ts
-│   └── seed.ts
-├── src/
-│   ├── routes/
-│      ├── folder.ts
-│   ├── services/
-│      ├── folderService.ts
-│   ├── utils/
-│      ├── serialize.ts
-│   ├── server.ts
-├── .env
-├── tsconfig.json
-├── package.json
-└── README.md
+    wsl -d Ubuntu -u root
 
-.env (sample):
-DATABASE_URL="mysql://root:@127.0.0.1:3306/explorer_db"  [sample db tanpa password]
-PORT=7001
+Buat password Linux (contoh user: rp-linux):
 
+    passwd rp-linux
 
-Prisma Setup:
-- Generate Prisma Client:
+## 📁 Struktur Folder
+
+    explorer_backend/
+    ├── prisma/
+    │   ├── schema.prisma
+    │   ├── prisma.config.ts
+    │   └── seed.ts
+    ├── src/
+    │   ├── routes/
+    │   │   └── folder.ts
+    │   ├── services/
+    │   │   └── folderService.ts
+    │   ├── utils/
+    │   │   └── serialize.ts
+    │   └── server.ts
+    ├── .env
+    ├── tsconfig.json
+    ├── package.json
+    └── README.md
+
+## 🔧 File `.env` (contoh)
+
+    DATABASE_URL="mysql://root:@127.0.0.1:3306/explorer_db"
+    PORT=7001
+
+## 🛠 Prisma Setup
+
+### Generate Prisma Client
+
     bunx prisma generate
 
-- init migrate:
+### Buat Migrasi Pertama
+
     bunx prisma migrate dev --name init
 
-- Migrate reset database existing
+### Reset Database
+
     bunx prisma migrate reset
 
-- db push
+### Push schema tanpa migrasi
+
     bunx prisma db push
 
-atau menggunakan prisma.config.ts:
-bunx prisma migrate dev --name init --config ./prisma/prisma.config.ts
+### Dengan prisma.config.ts
+
+    bunx prisma migrate dev --name init --config ./prisma/prisma.config.ts
